@@ -7,5 +7,6 @@ import com.capg.sprint.modle.Cart;
 
 @Repository
 public interface CartRepo extends CrudRepository<Cart, Integer> {
+	public Cart findBycId(int cId);
 
 }

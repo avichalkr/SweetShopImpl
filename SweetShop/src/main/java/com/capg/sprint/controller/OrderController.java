@@ -40,7 +40,7 @@ public class OrderController {
 		
 		@GetMapping(path = "/getorderbycartid/{id}", produces = "application/json")
 		public List<OrderDetails> getOrderByCartId(@PathVariable int id) {
-			return orderService.findByid(id);
+			return orderService.findByCartId(id);
 
 		}
 		

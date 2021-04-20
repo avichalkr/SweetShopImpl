@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.capg.sprint.modle.Cart;
 import com.capg.sprint.modle.Customer;
-import com.capg.sprint.repository.CartRepo;
+import com.capg.sprint.modle.OrderDetails;
+import com.capg.sprint.modle.Sweet;
 import com.capg.sprint.repository.CustomerRepo;
 
 @Transactional
@@ -18,7 +19,7 @@ public class CustomerServiceImpl {
 	@Autowired
 	private CustomerRepo customerRepo;
 	@Autowired
-	private CartRepo cartRepo;
+	private CartServiceImpl cartService;
 	@Autowired
 	private OrderDetailsServiceImpl orderService;
 	@Autowired
@@ -26,15 +27,25 @@ public class CustomerServiceImpl {
 	
 	public void addCustomer(Customer customer) {
 		customerRepo.save(customer);
-		cartRepo.save(new Cart(customer.getcId()));
+		cartService.saveCart(new Cart(customer.getcId()));
 	}
 	
 	public List<Customer> getAllCustomer(){
 		return (List<Customer>) customerRepo.findAll();
 	}
 	
-	public void buySweet() {
-		
+	public void buySweet(int customerId,int sweetId,int quantity) {
+		orderService.putOrder(new OrderDetails(cartService.findByCid(customerId).getCartId(), sweetId, quantity));
 	}
+	
+	public List<Sweet> getAllSweets(){
+		return sweetService.getAllSweets();
+	}
+	
+	public List<OrderDetails> seeCart(int custId){
+		return orderService.findByCartId(cartService.findByCid(custId).getCartId());
+	}
+	
+	
 
 }

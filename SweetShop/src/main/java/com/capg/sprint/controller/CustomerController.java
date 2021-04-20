@@ -17,7 +17,7 @@ import com.capg.sprint.service.CustomerServiceImpl;
 public class CustomerController {
 	
 	@Autowired
-	private CustomerServiceImpl customerService;
+	CustomerServiceImpl customerService;
 	
 	@PostMapping(path="/add",consumes="application/json")
 	public void add(@RequestBody Customer addcust) {
@@ -29,6 +29,11 @@ public class CustomerController {
 		return customerService.getAllCustomer();
 
 	}
+	
+//	@PostMapping(path="/buy",consumes="application/json")
+//	public void buy(@PathVariable int custid,@PathVariable int sid,@PathVariable int qty) {
+//		customerService.buySweet(custid,sid,qty);
+//	}
 
 
 }

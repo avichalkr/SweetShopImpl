@@ -29,8 +29,9 @@ public class OrderDetailsServiceImpl {
 		return (List<OrderDetails>) orderRepo.findAll();
 	}
 	
-	public List<OrderDetails> findByid(int id){
+	public List<OrderDetails> findByCartId(int id){
 		return orderRepo.findAllByCartId(id); 
 	}
+	
 	
 }
