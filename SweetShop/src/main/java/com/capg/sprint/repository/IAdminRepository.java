@@ -1,11 +1,10 @@
 package com.capg.sprint.repository;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.capg.sprint.modle.Sweet;
-@Repository
-public interface SweetRepo extends CrudRepository<Sweet, Integer>{
-	Sweet findBySid(int sid);
+import com.capg.sprint.modle.Admin;
 
+@Repository
+public interface IAdminRepository extends CrudRepository<Admin,Integer> {
+	
 }

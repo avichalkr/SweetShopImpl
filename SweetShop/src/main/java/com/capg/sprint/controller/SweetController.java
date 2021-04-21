@@ -44,7 +44,7 @@ public class SweetController {
 	}
 	
 	@GetMapping(path = "/getsweetbyid/{id}", produces = "application/json")
-	public Optional<Sweet> getSweetById(@PathVariable int id) {
+	public Object getSweetById(@PathVariable int id) {
 		return sweetService.getSweetById(id);
 
 	}

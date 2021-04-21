@@ -3,9 +3,9 @@ package com.capg.sprint.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.capg.sprint.modle.Sweet;
+import com.capg.sprint.modle.UserLogin;
 @Repository
-public interface SweetRepo extends CrudRepository<Sweet, Integer>{
-	Sweet findBySid(int sid);
+public interface ILoginRepository extends CrudRepository<UserLogin,Integer> {
+
 
 }

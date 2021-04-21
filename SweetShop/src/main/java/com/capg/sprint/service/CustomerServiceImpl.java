@@ -34,9 +34,9 @@ public class CustomerServiceImpl {
 		return (List<Customer>) customerRepo.findAll();
 	}
 	
-	public void buySweet(int customerId,int sweetId,int quantity) {
-		orderService.putOrder(new OrderDetails(cartService.findByCid(customerId).getCartId(), sweetId, quantity));
-	}
+//	public void buySweet(int customerId,int sweetId,int quantity) {
+//		orderService.putOrder(new OrderDetails(cartService.findByCid(customerId).getCartId(), sweetId, quantity));
+//	}
 	
 	public List<Sweet> getAllSweets(){
 		return sweetService.getAllSweets();
@@ -45,6 +45,30 @@ public class CustomerServiceImpl {
 	public List<OrderDetails> seeCart(int custId){
 		return orderService.findByCartId(cartService.findByCid(custId).getCartId());
 	}
+	
+	public void OrderSweet(OrderDetails order) {
+		orderService.putOrder(order);
+	}
+	
+	public int generateBill(int custId) {
+		List<OrderDetails> od=orderService.findByCartId(cartService.findByCid(custId).getCartId());
+		int bill=0;
+		for(OrderDetails orderit:od) {
+			System.out.println(orderit.getsId()+" "+orderit.getoQty());
+			int sweetId=orderit.getsId();
+			int sweetQty=orderit.getoQty();
+			Sweet sw=sweetService.getSweetById(sweetId);
+			double price= sw.getsPrice();
+//			System.out.println(price);
+			bill+=(price*sweetQty);	
+		}
+		System.out.println(bill);
+		
+		
+		return bill;
+		
+	}
+	
 	
 	
 

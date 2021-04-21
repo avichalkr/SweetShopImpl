@@ -13,6 +13,7 @@ public class CartServiceImpl {
 	@Autowired
 	private CartRepo cartRepo;
 	
+	
 	public void saveCart(Cart c) {
 		cartRepo.save(c);
 	}
@@ -24,8 +25,6 @@ public class CartServiceImpl {
 	public Optional<Cart> getById(int id) {
 		return cartRepo.findById(id);
 	}
-	
-	
 	
 
 }

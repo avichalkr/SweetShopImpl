@@ -38,11 +38,6 @@ public class OrderController {
 			orderService.deleteOrder(id);
 		}
 		
-		@GetMapping(path = "/getorderbycartid/{id}", produces = "application/json")
-		public List<OrderDetails> getOrderByCartId(@PathVariable int id) {
-			return orderService.findByCartId(id);
-
-		}
 		
 
 }
