@@ -56,17 +56,17 @@ import com.capg.sprint.service.OrderDetailsServiceImpl;
 			adminService.deleteSweet(id);
 		}
 		
-		@GetMapping(path = "/getsweetbyid/{id}", produces = "application/json")
+		@GetMapping(path = "/sweetbyid/{id}", produces = "application/json")
 		public Optional<Sweet> getSweetById(@PathVariable int id) {
 			return  adminService.getSweetById(id);
 		}
 		
-		@GetMapping(path = "/getall", produces = "application/json")
+		@GetMapping(path = "/allcustomer", produces = "application/json")
 		public List<Customer> getall() {
 			return customerService.getAllCustomer();
 		}
 		
-		@GetMapping(path = "/getorderbycartid/{id}", produces = "application/json")
+		@GetMapping(path = "/orderbycartid/{id}", produces = "application/json")
 		public List<OrderDetails> getOrderByCartId(@PathVariable int id) {
 			return orderService.findByCartId(id);
 
@@ -76,6 +76,11 @@ import com.capg.sprint.service.OrderDetailsServiceImpl;
 		public List<OrderDetails> seeAllOrders(){
 			return orderService.getAll();
 
+		}
+		
+		@DeleteMapping(path="/delete/{id}")
+		public void deleteOrder(@PathVariable int id) {
+			orderService.deleteOrder(id);
 		}
 	}
 

@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capg.sprint.modle.OrderDetails;
-import com.capg.sprint.repository.OrderDetailsRepo;
+import com.capg.sprint.repository.IOrderDetailsRepo;
 
 @Transactional
 @Service
 public class OrderDetailsServiceImpl {
 	
 	@Autowired
-	private OrderDetailsRepo orderRepo;
+	private IOrderDetailsRepo orderRepo;
 	
 	public void putOrder(OrderDetails order) {
 		orderRepo.save(order);

@@ -11,23 +11,27 @@ import com.capg.sprint.modle.Cart;
 import com.capg.sprint.modle.Customer;
 import com.capg.sprint.modle.OrderDetails;
 import com.capg.sprint.modle.Sweet;
-import com.capg.sprint.repository.CustomerRepo;
+import com.capg.sprint.modle.UserLogin;
+import com.capg.sprint.repository.ICustomerRepo;
 
 @Transactional
 @Service
 public class CustomerServiceImpl {
 	@Autowired
-	private CustomerRepo customerRepo;
+	private ICustomerRepo customerRepo;
 	@Autowired
 	private CartServiceImpl cartService;
 	@Autowired
 	private OrderDetailsServiceImpl orderService;
 	@Autowired
 	private SweetServiceImpl sweetService;
+	@Autowired
+	private LoginServiceImpl loginService;
 	
 	public void addCustomer(Customer customer) {
 		customerRepo.save(customer);
 		cartService.saveCart(new Cart(customer.getcId()));
+		loginService.addUser(new UserLogin(customer.getcId(),customer.getcPassword()));
 	}
 	
 	public List<Customer> getAllCustomer(){
@@ -57,8 +61,8 @@ public class CustomerServiceImpl {
 			System.out.println(orderit.getsId()+" "+orderit.getoQty());
 			int sweetId=orderit.getsId();
 			int sweetQty=orderit.getoQty();
-			Sweet sw=sweetService.getSweetById(sweetId);
-			double price= sw.getsPrice();
+			Sweet tempSweet=sweetService.getSweetById(sweetId);
+			double price= tempSweet.getsPrice();
 //			System.out.println(price);
 			bill+=(price*sweetQty);	
 		}

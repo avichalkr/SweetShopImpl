@@ -1,5 +1,7 @@
 package com.capg.sprint.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +14,9 @@ public class LoginServiceImpl {
 	
 	public void addUser(UserLogin user) {
 		loginRepo.save(user);
+	}
+	
+	public Optional<UserLogin> getUserById(int id) {
+		return loginRepo.findById(id);
 	}
 }

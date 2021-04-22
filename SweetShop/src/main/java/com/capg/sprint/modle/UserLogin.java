@@ -13,15 +13,7 @@ public class UserLogin {
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 	private String password;
-	private String phone;
-	private String address;
-	private String role;
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -34,22 +26,15 @@ public class UserLogin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
+	
+	public UserLogin(int id, String password) {
+		super();
+		this.id = id;
+		this.password = password;
 	}
 	@Override
 	public String toString() {
-		return "UserLogin [id=" + id + ", password=" + password + ", phone=" + phone + ", address=" + address
-				+ ", role=" + role + "]";
+		return "UserLogin [id=" + id + ", password=" + password +"]";
 	}
 	
 	

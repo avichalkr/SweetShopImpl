@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.capg.sprint.modle.OrderDetails;
 
 @Repository
-public interface OrderDetailsRepo extends CrudRepository<OrderDetails, Integer> {
+public interface IOrderDetailsRepo extends CrudRepository<OrderDetails, Integer> {
 	public List<OrderDetails> findAllByCartId(int cartId);
 
 }

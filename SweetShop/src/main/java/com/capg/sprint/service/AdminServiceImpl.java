@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.capg.sprint.modle.Admin;
 import com.capg.sprint.modle.Sweet;
+import com.capg.sprint.modle.UserLogin;
 import com.capg.sprint.repository.IAdminRepository;
-import com.capg.sprint.repository.SweetRepo;
+import com.capg.sprint.repository.ISweetRepo;
 
 
 @Service
@@ -18,10 +19,20 @@ public class AdminServiceImpl {
 	private IAdminRepository adminRepo;
 	
 	@Autowired
-	private SweetRepo sweetRepo;
+	private ISweetRepo sweetRepo;
 	
+	@Autowired
+	private LoginServiceImpl loginService;
 	public void addAdmin(Admin admin) {
 		adminRepo.save(admin);
+		loginService.addUser(new UserLogin(admin.getId(), admin.getPassword()));
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	public boolean validateUser(UserLogin user) {
+		if(user.equals(loginService.getUserById(user.getId())))
+			return true;
+		return false;
 	}
 	
 	public void addSweet(Sweet s) {

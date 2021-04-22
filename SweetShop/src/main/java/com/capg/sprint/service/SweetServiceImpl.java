@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capg.sprint.modle.Sweet;
-import com.capg.sprint.repository.SweetRepo;
+import com.capg.sprint.repository.ISweetRepo;
 
 @Service
 public class SweetServiceImpl {
 	@Autowired
-	private SweetRepo sweetRepo;
+	private ISweetRepo sweetRepo;
 	
 	public void addSweet(Sweet s) {
 		sweetRepo.save(s);
